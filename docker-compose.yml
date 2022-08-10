@@ -1,0 +1,17 @@
+services:
+  prodmais:
+    deploy:
+      resources:
+        limits:
+          memory: 1024M
+        reservations:
+          memory: 512M
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/var/www/html/prodmais
+    ports: 
+      - "8080:80"
+    container_name: prodmais
+    tty: true
