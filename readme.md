@@ -3,9 +3,8 @@
   <br>
   Container Docker para a ferramenta Prodmais
   <br>
+  Coloque esses arquivos no diretório do raíz do projeto e rode o comando `docker compose build`
 </p>
-
-Coloque esses arquivos no diretório do raíz do projeto e rode o comando `docker compose build`
 
 ### Uso
 
@@ -14,8 +13,10 @@ Coloque esses arquivos no diretório do raíz do projeto e rode o comando `docke
 - Use `./start.sh` para rodar o projeto
 
 **No Windows**
+Rode os comandos:
 
-- Rode o comando `docker compose build`
-- Rode o comando `docker compose up` 5. Rode o comando `docker exec prodmais ./container_services_start.sh` para iniciar os serviços dentro do container.
+1. `docker compose build`
+2. `docker compose up`
+3. `docker exec prodmais ./container_services_start.sh` para iniciar os serviços dentro do container.
 
 [Repositório do Prodmais](https://github.com/trmurakami/coletaprod)
