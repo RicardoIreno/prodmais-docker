@@ -25,6 +25,15 @@ RUN apt-get update && apt-get install -y \
     echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | tee /etc/apt/sources.list.d/elastic-7.x.list && \
     apt-get update && apt-get install -y elasticsearch && \
     apt autoclean -y &&  apt autoremove -y
+    
+RUN a2enmod rewrite && \
+    printf " \
+    \n<Directory /var/www/html/prodmais> \
+    \nOptions Indexes FollowSymLinks \
+    \nAllowOverride All \
+    \nRequire all granted \
+    \n</Directory> \
+    " >> /etc/apache2/apache2.conf
 
 COPY . /var/www/html/prodmais
 RUN cd /var/www/html/prodmais && \
