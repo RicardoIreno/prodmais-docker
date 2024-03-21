@@ -1,21 +1,34 @@
-version: "3.9"
+version: "3"
 
 services:
   prodmais:
-    deploy:
-      resources:
-        limits:
-          memory: 1024M
-        reservations:
-          memory: 512M
+    container_name: prodmais
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ./Dockerfile
     volumes:
-      - .:/var/www/html/prodmais
+      - ./prodmais:/var/www/html/prodmais
+      - ./esdata:/tmp/elastic
     environment:
       - TIMEZONE=Etc/GMT-3
     ports:
-      - "8080:80"
-    container_name: prodmais
+      - "80:80"
+    networks:
+      - elastic
     tty: true
+    command: >
+      bash -c '
+        service apache2 start;
+        service apache2 status;
+        service elasticsearch start;
+        service elasticsearch status;
+        bash;
+      '
+
+volumes:
+  prodmais:
+    driver: local
+
+networks:
+  elastic:
+    driver: bridge
