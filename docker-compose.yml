@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: ./Dockerfile
     volumes:
-      - ./prodmais:/var/www/html/prodmais
+      - ./prodmais:/var/www/html
       - ./esdata:/tmp/elastic
     environment:
       - TIMEZONE=Etc/GMT-3
